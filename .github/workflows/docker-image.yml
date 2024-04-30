@@ -1,0 +1,23 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Login Docker
+      env:
+        DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+      run: docker login -U $DOCKER_USERNAME -P $DOCKER_PASSWORD
+    - name: Build da imagem docker
+      run: docker build -t superheroirepos .
+    - name: Push para o repositório docker
+      run: docker push ffcsantos2001/superheroirepos:latest

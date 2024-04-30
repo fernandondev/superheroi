@@ -19,10 +19,8 @@ jobs:
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
       run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     - name: Pull Docker image
-      env:
-        DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
-      run: sudo docker pull $DOCKER_USERNAME/superheroirepos:latest
+      run: sudo docker pull ffcsantos2001/superheroirepos:latest
     - name: Deletar container docker antigo
-      run: sudo docker rm -f -cicd-pipeline-container || true
+      run: sudo docker rm -f superheroi-container || true
     - name: Rodar docker container
       run: sudo docker run -d -p 8080:3000 --name superheroi-container ffcsantos2001/superheroi

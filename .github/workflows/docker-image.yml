@@ -19,5 +19,7 @@ jobs:
       run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     - name: Build da imagem docker
       run: docker build -t superheroirepos .
+    - name: Tag docker image
+      run: docker tag superheroirepos ffcsantos2001/superheroirepos:latest
     - name: Push para o repositório docker
       run: docker push ffcsantos2001/superheroirepos:latest

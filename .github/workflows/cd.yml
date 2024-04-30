@@ -19,7 +19,7 @@ jobs:
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
       run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     - name: Pull Docker image
-      run: sudo docker pull ffcsantos2001/superheroirepos:latest
+      run: docker pull ffcsantos2001/superheroirepos:latest
     - name: Deletar container docker antigo
       run: sudo docker rm -f superheroi-container || true
     - name: Rodar docker container

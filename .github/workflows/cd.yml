@@ -1,0 +1,21 @@
+name: CD Pipeline
+
+on:
+  workflow_run:
+    workflows:  ["CI Pipeline"]
+    types:
+      -completed
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Pull Docker image
+      run: sudo docker pull ffcsantos2001/superheroirepos:latest
+    - name: Deletar container docker antigo
+      run: sudo docker rm -f -cicd-pipeline-container || true
+    - name: Rodar docker container
+      run: sudo docker run -d -p 8080:3000 --name superheroi-container ffcsantos2001/superheroi

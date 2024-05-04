@@ -25,13 +25,13 @@ export class AutenticacaoController {
         return await this.autenticacaoService.logout( accessToken );
     }
 
-    @Get('inativar-usuario')
+    @Get('inativa-usuario')
     @UseGuards(AutenticacaoGuard)
     async inativarUsuario(  @Headers('Authorization') accessToken: string) {
         return await this.autenticacaoService.inativarUsuario( accessToken );
     }
 
-    @Post('jwt/reautenticar')
+    @Post('jwt/reautentica')
     @UsePipes( new ValidationPipe() )
     async reautenticar( @Body() autenticacaoRenovaTokenRequestDto: AutenticacaoRenovaTokenRequestDto ): Promise<AutenticacaoResponseDto> {
         return await this.autenticacaoService.reautenticar( autenticacaoRenovaTokenRequestDto );

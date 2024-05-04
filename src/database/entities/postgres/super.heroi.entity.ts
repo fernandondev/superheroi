@@ -56,8 +56,8 @@ export class SuperHeroiEntity{
     @Column({type: 'int', name: 'weight_kg'})
     peso: number;
 
-    @OneToMany(() => HeroiAtributoEntity, heroiAtributo => heroiAtributo.superHeroi)
-    heroiAtributo: HeroiAtributoEntity[];
+    @OneToMany(() => HeroiAtributoEntity, heroiAtributo => heroiAtributo.superHeroi, {eager: true})
+    heroiAtributos: HeroiAtributoEntity[];
 
 
 }

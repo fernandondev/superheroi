@@ -18,26 +18,20 @@ const cadastro_super_heroi_response_dto_1 = require("../dtos/cadastro.super.hero
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const alinhamento_entity_1 = require("../../../database/entities/postgres/alinhamento.entity");
-const atributo_entity_1 = require("../../../database/entities/postgres/atributo.entity");
 const cor_entity_1 = require("../../../database/entities/postgres/cor.entity");
 const editora_entity_1 = require("../../../database/entities/postgres/editora.entity");
 const genero_entity_1 = require("../../../database/entities/postgres/genero.entity");
-const heroi_atributo_entity_1 = require("../../../database/entities/postgres/heroi.atributo.entity");
-const poder_entity_1 = require("../../../database/entities/postgres/poder.entity");
 const raca_entity_1 = require("../../../database/entities/postgres/raca.entity");
 const super_heroi_entity_1 = require("../../../database/entities/postgres/super.heroi.entity");
 const log_service_1 = require("../../../common/log/log.service");
 const parametros_cadastro_response_dto_1 = require("../dtos/parametros.cadastro.response.dto");
 const super_heroi_response_dto_1 = require("../dtos/super.heroi.response.dto");
 let SuperheroiService = class SuperheroiService {
-    constructor(alinhamentoEntityRepository, atributoEntityRepository, corEntityRepository, editoraEntityRepository, generoEntityRepository, heroiAtributoEntityRepository, poderEntityRepository, racaEntityRepository, superHeroiEntityRepository, logService) {
+    constructor(alinhamentoEntityRepository, corEntityRepository, editoraEntityRepository, generoEntityRepository, racaEntityRepository, superHeroiEntityRepository, logService) {
         this.alinhamentoEntityRepository = alinhamentoEntityRepository;
-        this.atributoEntityRepository = atributoEntityRepository;
         this.corEntityRepository = corEntityRepository;
         this.editoraEntityRepository = editoraEntityRepository;
         this.generoEntityRepository = generoEntityRepository;
-        this.heroiAtributoEntityRepository = heroiAtributoEntityRepository;
-        this.poderEntityRepository = poderEntityRepository;
         this.racaEntityRepository = racaEntityRepository;
         this.superHeroiEntityRepository = superHeroiEntityRepository;
         this.logService = logService;
@@ -229,18 +223,12 @@ exports.SuperheroiService = SuperheroiService;
 exports.SuperheroiService = SuperheroiService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(alinhamento_entity_1.AlinhamentoEntity, 'POSTGRES')),
-    __param(1, (0, typeorm_1.InjectRepository)(atributo_entity_1.AtributoEntity, 'POSTGRES')),
-    __param(2, (0, typeorm_1.InjectRepository)(cor_entity_1.CorEntity, 'POSTGRES')),
-    __param(3, (0, typeorm_1.InjectRepository)(editora_entity_1.EditoraEntity, 'POSTGRES')),
-    __param(4, (0, typeorm_1.InjectRepository)(genero_entity_1.GeneroEntity, 'POSTGRES')),
-    __param(5, (0, typeorm_1.InjectRepository)(heroi_atributo_entity_1.HeroiAtributoEntity, 'POSTGRES')),
-    __param(6, (0, typeorm_1.InjectRepository)(poder_entity_1.PoderEntity, 'POSTGRES')),
-    __param(7, (0, typeorm_1.InjectRepository)(raca_entity_1.RacaEntity, 'POSTGRES')),
-    __param(8, (0, typeorm_1.InjectRepository)(super_heroi_entity_1.SuperHeroiEntity, 'POSTGRES')),
+    __param(1, (0, typeorm_1.InjectRepository)(cor_entity_1.CorEntity, 'POSTGRES')),
+    __param(2, (0, typeorm_1.InjectRepository)(editora_entity_1.EditoraEntity, 'POSTGRES')),
+    __param(3, (0, typeorm_1.InjectRepository)(genero_entity_1.GeneroEntity, 'POSTGRES')),
+    __param(4, (0, typeorm_1.InjectRepository)(raca_entity_1.RacaEntity, 'POSTGRES')),
+    __param(5, (0, typeorm_1.InjectRepository)(super_heroi_entity_1.SuperHeroiEntity, 'POSTGRES')),
     __metadata("design:paramtypes", [typeorm_2.Repository,
-        typeorm_2.Repository,
-        typeorm_2.Repository,
-        typeorm_2.Repository,
         typeorm_2.Repository,
         typeorm_2.Repository,
         typeorm_2.Repository,

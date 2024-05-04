@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AtributoEntity = void 0;
+const heroi_atributo_entity_1 = require("./heroi.atributo.entity");
 const typeorm_1 = require("typeorm");
 let AtributoEntity = class AtributoEntity {
 };
@@ -22,6 +23,10 @@ __decorate([
     (0, typeorm_1.Column)({ type: 'varchar', name: 'attribute_name' }),
     __metadata("design:type", String)
 ], AtributoEntity.prototype, "nomeAtributo", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => heroi_atributo_entity_1.HeroiAtributoEntity, heroiAtributo => heroiAtributo.atributo),
+    __metadata("design:type", Array)
+], AtributoEntity.prototype, "heroiAtributos", void 0);
 exports.AtributoEntity = AtributoEntity = __decorate([
     (0, typeorm_1.Entity)({ database: 'POSTGRES', name: 'attribute' })
 ], AtributoEntity);

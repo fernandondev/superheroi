@@ -1,24 +1,26 @@
 import { AtributoEntity } from 'src/database/entities/postgres/atributo.entity';
 import { SuperHeroiEntity } from './super.heroi.entity';
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, PrimaryColumn, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, PrimaryColumn, ManyToOne, JoinColumn } from 'typeorm';
 
 
 @Entity({ database: 'POSTGRES', name: 'hero_attribute'})
 export class HeroiAtributoEntity{
 
-    @Column({ type:'int8', name:'hero_id' })
+    @PrimaryColumn({ type:'int8', name:'hero_id' })
     idHeroi: bigint;
 
-    @Column({ type:'int8', name:'attribute_id' })
+    @PrimaryColumn({ type:'int8', name:'attribute_id' })
     idAtributo: bigint;
 
     @Column({type: 'int', name: 'attribute_value'})
     valorAtributo: number;
 
-    @ManyToOne(() => SuperHeroiEntity, (superHeroi) => superHeroi.heroiAtributo)
+    @ManyToOne(() => SuperHeroiEntity, (superHeroi) => superHeroi.heroiAtributos)
+    @JoinColumn({ name: 'hero_id' })
     superHeroi: SuperHeroiEntity
 
-    @ManyToOne(() => AtributoEntity, (atributo) => atributo.heroiAtributo)
+    @ManyToOne(() => AtributoEntity, (atributo) => atributo.heroiAtributos, {eager: true}) 
+    @JoinColumn({ name: 'attribute_id' })
     atributo: AtributoEntity
 
 }

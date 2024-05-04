@@ -54,7 +54,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AutenticacaoController.prototype, "logout", null);
 __decorate([
-    (0, common_1.Get)('inativar-usuario'),
+    (0, common_1.Get)('inativa-usuario'),
     (0, common_1.UseGuards)(autenticacao_guard_1.AutenticacaoGuard),
     __param(0, (0, common_1.Headers)('Authorization')),
     __metadata("design:type", Function),
@@ -62,7 +62,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AutenticacaoController.prototype, "inativarUsuario", null);
 __decorate([
-    (0, common_1.Post)('jwt/reautenticar'),
+    (0, common_1.Post)('jwt/reautentica'),
     (0, common_1.UsePipes)(new common_1.ValidationPipe()),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),

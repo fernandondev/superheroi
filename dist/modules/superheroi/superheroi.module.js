@@ -22,6 +22,8 @@ const poder_entity_1 = require("../../database/entities/postgres/poder.entity");
 const raca_entity_1 = require("../../database/entities/postgres/raca.entity");
 const super_heroi_entity_1 = require("../../database/entities/postgres/super.heroi.entity");
 const usuario_module_1 = require("../usuario/usuario.module");
+const atributo_controller_1 = require("./controllers/atributo.controller");
+const atributo_service_1 = require("./services/atributo.service");
 let SuperheroiModule = class SuperheroiModule {
 };
 exports.SuperheroiModule = SuperheroiModule;
@@ -42,8 +44,8 @@ exports.SuperheroiModule = SuperheroiModule = __decorate([
             ], 'POSTGRES'),
             usuario_module_1.UsuarioModule
         ],
-        providers: [superheroi_service_1.SuperheroiService],
-        controllers: [superheroi_controller_1.SuperheroiController]
+        providers: [superheroi_service_1.SuperheroiService, atributo_service_1.AtributoService],
+        controllers: [superheroi_controller_1.SuperheroiController, atributo_controller_1.AtributoController]
     })
 ], SuperheroiModule);
 //# sourceMappingURL=superheroi.module.js.map

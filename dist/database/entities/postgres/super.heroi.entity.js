@@ -10,14 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SuperHeroiEntity = void 0;
+const heroi_atributo_entity_1 = require("./heroi.atributo.entity");
 const typeorm_1 = require("typeorm");
 const genero_entity_1 = require("./genero.entity");
 const cor_entity_1 = require("./cor.entity");
 const raca_entity_1 = require("./raca.entity");
 const editora_entity_1 = require("./editora.entity");
 const alinhamento_entity_1 = require("./alinhamento.entity");
-const atributo_entity_1 = require("./atributo.entity");
-const poder_entity_1 = require("./poder.entity");
 let SuperHeroiEntity = class SuperHeroiEntity {
 };
 exports.SuperHeroiEntity = SuperHeroiEntity;
@@ -77,23 +76,9 @@ __decorate([
     __metadata("design:type", Number)
 ], SuperHeroiEntity.prototype, "peso", void 0);
 __decorate([
-    (0, typeorm_1.ManyToMany)(() => atributo_entity_1.AtributoEntity),
-    (0, typeorm_1.JoinTable)({
-        name: 'hero_attribute',
-        joinColumn: { name: 'hero_id' },
-        inverseJoinColumn: { name: 'attribute_id' }
-    }),
+    (0, typeorm_1.OneToMany)(() => heroi_atributo_entity_1.HeroiAtributoEntity, heroiAtributo => heroiAtributo.superHeroi, { eager: true }),
     __metadata("design:type", Array)
-], SuperHeroiEntity.prototype, "atributos", void 0);
-__decorate([
-    (0, typeorm_1.ManyToMany)(() => poder_entity_1.PoderEntity),
-    (0, typeorm_1.JoinTable)({
-        name: 'hero_power',
-        joinColumn: { name: 'hero_id' },
-        inverseJoinColumn: { name: 'power_id' }
-    }),
-    __metadata("design:type", Array)
-], SuperHeroiEntity.prototype, "poderes", void 0);
+], SuperHeroiEntity.prototype, "heroiAtributos", void 0);
 exports.SuperHeroiEntity = SuperHeroiEntity = __decorate([
     (0, typeorm_1.Entity)({ database: 'POSTGRES', name: 'superhero' })
 ], SuperHeroiEntity);

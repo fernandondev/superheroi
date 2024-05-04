@@ -10,6 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HeroiAtributoEntity = void 0;
+const atributo_entity_1 = require("./atributo.entity");
+const super_heroi_entity_1 = require("./super.heroi.entity");
 const typeorm_1 = require("typeorm");
 let HeroiAtributoEntity = class HeroiAtributoEntity {
 };
@@ -26,6 +28,16 @@ __decorate([
     (0, typeorm_1.Column)({ type: 'int', name: 'attribute_value' }),
     __metadata("design:type", Number)
 ], HeroiAtributoEntity.prototype, "valorAtributo", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => super_heroi_entity_1.SuperHeroiEntity, (superHeroi) => superHeroi.heroiAtributos),
+    (0, typeorm_1.JoinColumn)({ name: 'hero_id' }),
+    __metadata("design:type", super_heroi_entity_1.SuperHeroiEntity)
+], HeroiAtributoEntity.prototype, "superHeroi", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => atributo_entity_1.AtributoEntity, (atributo) => atributo.heroiAtributos, { eager: true }),
+    (0, typeorm_1.JoinColumn)({ name: 'attribute_id' }),
+    __metadata("design:type", atributo_entity_1.AtributoEntity)
+], HeroiAtributoEntity.prototype, "atributo", void 0);
 exports.HeroiAtributoEntity = HeroiAtributoEntity = __decorate([
     (0, typeorm_1.Entity)({ database: 'POSTGRES', name: 'hero_attribute' })
 ], HeroiAtributoEntity);

@@ -23,8 +23,6 @@ import { LogEnum } from 'src/common/log/models/enums/log.enum';
       const ctx = host.switchToHttp();
   
       this.logService.gravarLog( exception['message'], LogEnum.ERROR );
-
-      //console.log(exception);
   
       const httpStatus =
         exception instanceof HttpException

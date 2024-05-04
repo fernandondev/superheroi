@@ -12,6 +12,6 @@ export class AtributoEntity {
     nomeAtributo: string;
 
     @OneToMany(() => HeroiAtributoEntity, heroiAtributo => heroiAtributo.atributo)
-    heroiAtributo: HeroiAtributoEntity[];
+    heroiAtributos: HeroiAtributoEntity[];
 
 }

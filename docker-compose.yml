@@ -9,9 +9,9 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 12345678
     volumes:
-      - db:/data/postgres
+      - /db:/data/postgres
     ports:
-      - "5332:5432"
+      - "5331:5432"
     networks:
       - db
     restart: unless-stopped
@@ -29,7 +29,7 @@ services:
             MONGO_INITDB_ROOT_USERNAME: mongodbteste
             MONGO_INITDB_ROOT_PASSWORD: 12345678asdasd
         ports:
-            - 27018:27017
+            - 27017:27017
         volumes:
             - ./mongo-db-data:/data/db
             - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro

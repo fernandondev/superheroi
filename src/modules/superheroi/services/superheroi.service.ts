@@ -4,31 +4,24 @@ import { CadastroSuperHeroiResponseDto } from '../dtos/cadastro.super.heroi.resp
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { AlinhamentoEntity } from 'src/database/entities/postgres/alinhamento.entity';
-import { AtributoEntity } from 'src/database/entities/postgres/atributo.entity';
 import { CorEntity } from 'src/database/entities/postgres/cor.entity';
 import { EditoraEntity } from 'src/database/entities/postgres/editora.entity';
 import { GeneroEntity } from 'src/database/entities/postgres/genero.entity';
-import { HeroiAtributoEntity } from 'src/database/entities/postgres/heroi.atributo.entity';
-import { PoderEntity } from 'src/database/entities/postgres/poder.entity';
 import { RacaEntity } from 'src/database/entities/postgres/raca.entity';
 import { SuperHeroiEntity } from 'src/database/entities/postgres/super.heroi.entity';
 import { LogService } from 'src/common/log/log.service';
 import { ParametrosCadastroResponseDto } from '../dtos/parametros.cadastro.response.dto';
 import { SuperHeroiResponseDto } from '../dtos/super.heroi.response.dto';
 import { AtualizarSuperHeroiRequestDto } from '../dtos/atualizar.super.heroi.request.dto';
-import { AtualizarUsuarioRequestDto } from 'src/modules/usuario/dtos/atualizar.usuario.request.dto';
 
 @Injectable()
 export class SuperheroiService {
 
     constructor(
         @InjectRepository(AlinhamentoEntity, 'POSTGRES') private readonly alinhamentoEntityRepository : Repository<AlinhamentoEntity>,
-        @InjectRepository(AtributoEntity, 'POSTGRES') private readonly atributoEntityRepository : Repository<AtributoEntity>,
         @InjectRepository(CorEntity, 'POSTGRES') private readonly corEntityRepository : Repository<CorEntity>,
         @InjectRepository(EditoraEntity, 'POSTGRES') private readonly editoraEntityRepository : Repository<EditoraEntity>,
         @InjectRepository(GeneroEntity, 'POSTGRES') private readonly generoEntityRepository : Repository<GeneroEntity>,
-        @InjectRepository(HeroiAtributoEntity, 'POSTGRES') private readonly heroiAtributoEntityRepository : Repository<HeroiAtributoEntity>,
-        @InjectRepository(PoderEntity, 'POSTGRES') private readonly poderEntityRepository : Repository<PoderEntity>,
         @InjectRepository(RacaEntity, 'POSTGRES') private readonly racaEntityRepository : Repository<RacaEntity>,
         @InjectRepository(SuperHeroiEntity, 'POSTGRES') private readonly superHeroiEntityRepository : Repository<SuperHeroiEntity>,
         private readonly logService: LogService
@@ -130,7 +123,7 @@ export class SuperheroiService {
     }
     
     /**
-     * Pega todos os parâmetros que serão necessários para o cadastro do usuário
+     * Pega todos os parâmetros que serão necessários para o cadastro do heroi
      * @returns Promise<ParametrosCadastroResponseDto>
      */
     async pegarParametrosCadastro( ) : Promise<ParametrosCadastroResponseDto> {

@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { HeroiAtributoEntity } from 'src/database/entities/postgres/heroi.atributo.entity';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 
 
 @Entity({ database: 'POSTGRES', name: 'attribute'})
@@ -9,5 +10,8 @@ export class AtributoEntity {
 
     @Column({type: 'varchar', name: 'attribute_name'})
     nomeAtributo: string;
+
+    @OneToMany(() => HeroiAtributoEntity, heroiAtributo => heroiAtributo.atributo)
+    heroiAtributo: HeroiAtributoEntity[];
 
 }

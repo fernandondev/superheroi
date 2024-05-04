@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, ManyToMany, JoinTable } from 'typeorm';
+import { HeroiAtributoEntity } from 'src/database/entities/postgres/heroi.atributo.entity';
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, ManyToMany, JoinTable, OneToMany } from 'typeorm';
 import { GeneroEntity } from './genero.entity';
 import { CorEntity } from './cor.entity';
 import { RacaEntity } from './raca.entity';
@@ -55,21 +56,8 @@ export class SuperHeroiEntity{
     @Column({type: 'int', name: 'weight_kg'})
     peso: number;
 
-    @ManyToMany(() => AtributoEntity)
-    @JoinTable({
-        name: 'hero_attribute',
-        joinColumn: { name: 'hero_id' },
-        inverseJoinColumn: { name: 'attribute_id' }
-      })
-    atributos: AtributoEntity[]
-
-    @ManyToMany(() => PoderEntity)
-    @JoinTable({
-        name: 'hero_power',
-        joinColumn: { name: 'hero_id' },
-        inverseJoinColumn: { name: 'power_id' }
-      })
-    poderes: PoderEntity[]
+    @OneToMany(() => HeroiAtributoEntity, heroiAtributo => heroiAtributo.superHeroi)
+    heroiAtributo: HeroiAtributoEntity[];
 
 
 }

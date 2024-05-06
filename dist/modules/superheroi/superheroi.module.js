@@ -24,6 +24,9 @@ const super_heroi_entity_1 = require("../../database/entities/postgres/super.her
 const usuario_module_1 = require("../usuario/usuario.module");
 const atributo_controller_1 = require("./controllers/atributo.controller");
 const atributo_service_1 = require("./services/atributo.service");
+const poder_service_1 = require("./services/poder.service");
+const poder_controller_1 = require("./controllers/poder.controller");
+const heroi_poder_entity_1 = require("../../database/entities/postgres/heroi.poder.entity");
 let SuperheroiModule = class SuperheroiModule {
 };
 exports.SuperheroiModule = SuperheroiModule;
@@ -40,12 +43,13 @@ exports.SuperheroiModule = SuperheroiModule = __decorate([
                 heroi_atributo_entity_1.HeroiAtributoEntity,
                 poder_entity_1.PoderEntity,
                 raca_entity_1.RacaEntity,
-                super_heroi_entity_1.SuperHeroiEntity
+                super_heroi_entity_1.SuperHeroiEntity,
+                heroi_poder_entity_1.HeroiPoderEntity
             ], 'POSTGRES'),
             usuario_module_1.UsuarioModule
         ],
-        providers: [superheroi_service_1.SuperheroiService, atributo_service_1.AtributoService],
-        controllers: [superheroi_controller_1.SuperheroiController, atributo_controller_1.AtributoController]
+        providers: [superheroi_service_1.SuperheroiService, atributo_service_1.AtributoService, poder_service_1.PoderService],
+        controllers: [superheroi_controller_1.SuperheroiController, atributo_controller_1.AtributoController, poder_controller_1.PoderController]
     })
 ], SuperheroiModule);
 //# sourceMappingURL=superheroi.module.js.map

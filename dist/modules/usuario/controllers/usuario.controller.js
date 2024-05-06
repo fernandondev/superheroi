@@ -38,23 +38,33 @@ exports.UsuarioController = UsuarioController;
 __decorate([
     (0, common_1.Post)(),
     (0, common_1.UsePipes)(new common_1.ValidationPipe()),
+    (0, swagger_1.ApiCreatedResponse)(),
+    (0, swagger_1.ApiConflictResponse)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [criar_usuario_request_dto_1.CriarUsuarioRequestDto]),
     __metadata("design:returntype", Promise)
 ], UsuarioController.prototype, "criar", null);
 __decorate([
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.Get)('/:id'),
     (0, common_1.UseGuards)(autenticacao_guard_1.AutenticacaoGuard),
+    (0, swagger_1.ApiBadRequestResponse)(),
+    (0, swagger_1.ApiOkResponse)({ description: 'Caso o usuário exista', type: usuario_dto_1.UsuarioDto }),
+    (0, swagger_1.ApiUnauthorizedResponse)(),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], UsuarioController.prototype, "pesquisarPorId", null);
 __decorate([
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.Put)('/:id'),
     (0, common_1.UsePipes)(new common_1.ValidationPipe()),
     (0, common_1.UseGuards)(autenticacao_guard_1.AutenticacaoGuard),
+    (0, swagger_1.ApiBadRequestResponse)(),
+    (0, swagger_1.ApiOkResponse)(),
+    (0, swagger_1.ApiUnauthorizedResponse)(),
     __param(0, (0, common_1.Param)()),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),

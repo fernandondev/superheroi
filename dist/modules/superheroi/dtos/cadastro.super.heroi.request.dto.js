@@ -18,7 +18,8 @@ exports.CadastroSuperHeroiRequestDto = CadastroSuperHeroiRequestDto;
 __decorate([
     (0, swagger_1.ApiProperty)({
         example: 'Chapolin',
-        description: `O nome é de livre escolha.`
+        description: `O nome é de livre escolha.`,
+        required: true
     }),
     (0, class_validator_1.IsDefined)({ message: 'O campo nomeSuperHeroi é obrigatório' }),
     (0, class_validator_1.IsString)({ message: 'O campo nomeSuperHeroi deve ser uma string.' }),
@@ -29,7 +30,8 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiProperty)({
         example: 'Chapolin Colorado',
-        description: `O nome completo é de livre escolha.`
+        description: `O nome completo é de livre escolha.`,
+        required: true
     }),
     (0, class_validator_1.IsDefined)({ message: 'O campo nomeCompleto é obrigatório' }),
     (0, class_validator_1.IsString)({ message: 'O campo nomeCompleto deve ser uma string.' }),
@@ -40,7 +42,8 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiProperty)({
         example: 2,
-        description: `Os possíveis id's desse campo podem ser obtidos pelo endpoint 'superheroi/parametros-para-cadastro-e-atualizacao'.`
+        description: `Os possíveis id's desse campo podem ser obtidos pelo endpoint 'superheroi/parametros-para-cadastro-e-atualizacao'.`,
+        required: true
     }),
     (0, class_validator_1.IsDefined)({ message: 'O campo generoId é obrigatório' }),
     (0, class_validator_1.IsNumber)(),
@@ -49,7 +52,8 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiProperty)({
         example: 3,
-        description: `Os possíveis id's desse campo podem ser obtidos pelo endpoint 'superheroi/parametros-para-cadastro-e-atualizacao'.`
+        description: `Os possíveis id's desse campo podem ser obtidos pelo endpoint 'superheroi/parametros-para-cadastro-e-atualizacao'.`,
+        required: true
     }),
     (0, class_validator_1.IsDefined)({ message: 'O campo generoId é obrigatório' }),
     (0, class_validator_1.IsNumber)(),
@@ -58,7 +62,8 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiProperty)({
         example: 4,
-        description: `Os possíveis id's desse campo podem ser obtidos pelo endpoint 'superheroi/parametros-para-cadastro-e-atualizacao'.`
+        description: `Os possíveis id's desse campo podem ser obtidos pelo endpoint 'superheroi/parametros-para-cadastro-e-atualizacao'.`,
+        required: true
     }),
     (0, class_validator_1.IsDefined)({ message: 'O campo generoId é obrigatório' }),
     (0, class_validator_1.IsNumber)(),
@@ -67,7 +72,8 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiProperty)({
         example: 5,
-        description: `Os possíveis id's desse campo podem ser obtidos pelo endpoint 'superheroi/parametros-para-cadastro-e-atualizacao'.`
+        description: `Os possíveis id's desse campo podem ser obtidos pelo endpoint 'superheroi/parametros-para-cadastro-e-atualizacao'.`,
+        required: true
     }),
     (0, class_validator_1.IsDefined)({ message: 'O campo generoId é obrigatório' }),
     (0, class_validator_1.IsNumber)(),
@@ -76,7 +82,8 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiProperty)({
         example: 2,
-        description: `Os possíveis id's desse campo podem ser obtidos pelo endpoint 'superheroi/parametros-para-cadastro-e-atualizacao'.`
+        description: `Os possíveis id's desse campo podem ser obtidos pelo endpoint 'superheroi/parametros-para-cadastro-e-atualizacao'.`,
+        required: true
     }),
     (0, class_validator_1.IsDefined)({ message: 'O campo generoId é obrigatório' }),
     (0, class_validator_1.IsNumber)(),
@@ -85,7 +92,8 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiProperty)({
         example: 1,
-        description: `Os possíveis id's desse campo podem ser obtidos pelo endpoint 'superheroi/parametros-para-cadastro-e-atualizacao'.`
+        description: `Os possíveis id's desse campo podem ser obtidos pelo endpoint 'superheroi/parametros-para-cadastro-e-atualizacao'.`,
+        required: true
     }),
     (0, class_validator_1.IsDefined)({ message: 'O campo generoId é obrigatório' }),
     (0, class_validator_1.IsNumber)(),
@@ -94,7 +102,8 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiProperty)({
         example: 2,
-        description: `Os possíveis id's desse campo podem ser obtidos pelo endpoint 'superheroi/parametros-para-cadastro-e-atualizacao'.`
+        description: `Os possíveis id's desse campo podem ser obtidos pelo endpoint 'superheroi/parametros-para-cadastro-e-atualizacao'.`,
+        required: true
     }),
     (0, class_validator_1.IsDefined)({ message: 'O campo generoId é obrigatório' }),
     (0, class_validator_1.IsNumber)(),
@@ -103,7 +112,8 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiProperty)({
         example: 152,
-        description: `A altura é em cm'.`
+        description: `A altura é em cm'.`,
+        required: true
     }),
     (0, class_validator_1.IsDefined)({ message: 'O campo altura é obrigatório' }),
     (0, class_validator_1.IsNumber)(),
@@ -112,7 +122,8 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiProperty)({
         example: 68,
-        description: `O peso é em KG'.`
+        description: `O peso é em KG'.`,
+        required: true
     }),
     (0, class_validator_1.IsDefined)({ message: 'O campo peso é obrigatório' }),
     (0, class_validator_1.IsNumber)(),

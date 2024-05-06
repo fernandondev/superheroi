@@ -24,6 +24,7 @@ let CapturaTodasAsExcecoes = class CapturaTodasAsExcecoes {
         const { httpAdapter } = this.httpAdapterHost;
         const ctx = host.switchToHttp();
         this.logService.gravarLog(exception['message'], log_enum_1.LogEnum.ERROR);
+        console.log(exception);
         const httpStatus = exception instanceof common_1.HttpException
             ? exception.getStatus()
             : common_1.HttpStatus.INTERNAL_SERVER_ERROR;

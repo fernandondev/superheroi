@@ -1190,4 +1190,6 @@ INSERT INTO superpower VALUES
 (166,'Omnipresent'),
 (167,'Omniscient');
 
+create index idx_publisher_id_superhero on superhero(publisher_id);
+
 COMMIT;

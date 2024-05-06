@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PoderEntity = void 0;
 const typeorm_1 = require("typeorm");
+const heroi_poder_entity_1 = require("./heroi.poder.entity");
 let PoderEntity = class PoderEntity {
 };
 exports.PoderEntity = PoderEntity;
@@ -22,6 +23,10 @@ __decorate([
     (0, typeorm_1.Column)({ type: 'varchar', name: 'power_name' }),
     __metadata("design:type", String)
 ], PoderEntity.prototype, "nomePoder", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => heroi_poder_entity_1.HeroiPoderEntity, heroiPoder => heroiPoder.poder),
+    __metadata("design:type", Array)
+], PoderEntity.prototype, "heroiPoderes", void 0);
 exports.PoderEntity = PoderEntity = __decorate([
     (0, typeorm_1.Entity)({ database: 'POSTGRES', name: 'superpower' })
 ], PoderEntity);

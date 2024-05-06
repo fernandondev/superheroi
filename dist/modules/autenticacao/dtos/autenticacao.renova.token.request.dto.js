@@ -10,11 +10,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AutenticacaoRenovaTokenRequestDto = void 0;
+const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 class AutenticacaoRenovaTokenRequestDto {
 }
 exports.AutenticacaoRenovaTokenRequestDto = AutenticacaoRenovaTokenRequestDto;
 __decorate([
+    (0, swagger_1.ApiProperty)({
+        description: 'refresh token obtido no login',
+        required: true,
+        example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0MzE2YTUxNi1hNmU0LTQyNDMtOWI0MC0zMzc0MGMzMWI4MzIiLCJjcGYiOiIxOTEuMjg3LjUwNy0zMCIsImlhdCI6MTcxNDk1OTc3ODc2MSwiZXhwIjoxNzE0OTU5NzgyMzYxfQ.Gwz-qLNzVLjpIUtt8nQGaKUU80UBxLmfuW-MsthmVKw'
+    }),
     (0, class_validator_1.IsDefined)({ message: 'O refresh_token é obrigatório' }),
     __metadata("design:type", String)
 ], AutenticacaoRenovaTokenRequestDto.prototype, "refresh_token", void 0);

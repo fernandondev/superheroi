@@ -1,22 +1,25 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Matches, IsString, MaxLength, MinLength, IsEmail, IsDefined, IsOptional } from 'class-validator'
 
 export class AtualizarUsuarioRequestDto {
 
-    //Regex para cpf/cnpj
-    @IsDefined({message: 'cpf é obrigatório'})
-    @Matches(/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/, {message: 'O cpf enviado não é válido.'})
-    @IsString()
-    @IsOptional()
-    cpf: string;
 
+    @ApiProperty({
+        required: false,
+        example: 'Fernando'
+    })
     @IsDefined({message: 'Nome é obrigatório'})
     @IsString({message: 'O nome deve ser uma string.'})
     @MaxLength(200, {message: 'O nome deve conter menos de 200 dígitos.'})
     @MinLength(3, {message: 'O nome deve conter mais de 3 dígitos.'})
     @IsOptional()
     nome: string;
-
+   
     //Regex para email
+    @ApiProperty({
+        required: false,
+        example: 'teste@teste.com'
+    })
     @IsDefined({message: 'Email é obrigatório'})
     @IsEmail()
     @IsString({message: 'O email deve ser uma string.'})
@@ -25,11 +28,19 @@ export class AtualizarUsuarioRequestDto {
     @IsOptional()
     email: string;
 
+    @ApiProperty({
+        required: false,
+        example: 'base64'
+    })
     //Regex para base64
     @Matches(/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/, { message: 'A foto deve estar no formato base64' })
     @IsOptional()
     fotoBase64: string;
 
+    @ApiProperty({
+        required: false,
+        example: 'senha123456'
+    })
     //Regex validador de senha fraca
     @IsDefined({message: 'Senha é obrigatória'})
     @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {message: 'Senha deve conter pelo menos uma letra maiúscula e um caracter especial (?, @, $, dentre outros)!'})

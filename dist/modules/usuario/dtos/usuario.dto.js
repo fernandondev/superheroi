@@ -9,16 +9,61 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UsuarioPutParameters = exports.UsuarioDto = void 0;
+exports.UsuarioDto = exports.UsuarioPutParameters = void 0;
+const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
-class UsuarioDto {
-}
-exports.UsuarioDto = UsuarioDto;
-class UsuarioPutParameters {
-}
+let UsuarioPutParameters = class UsuarioPutParameters {
+};
 exports.UsuarioPutParameters = UsuarioPutParameters;
 __decorate([
+    (0, swagger_1.ApiProperty)({
+        description: 'id do usuário',
+        required: true,
+        example: 'aaaaaaaa-bbbb-1ccc-8ddd-eeeeeeeeeeee'
+    }),
     (0, class_validator_1.IsUUID)(),
     __metadata("design:type", String)
 ], UsuarioPutParameters.prototype, "id", void 0);
+exports.UsuarioPutParameters = UsuarioPutParameters = __decorate([
+    (0, swagger_1.ApiExtraModels)(UsuarioPutParameters)
+], UsuarioPutParameters);
+class UsuarioDto {
+}
+exports.UsuarioDto = UsuarioDto;
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", String)
+], UsuarioDto.prototype, "id", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", String)
+], UsuarioDto.prototype, "cpf", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", String)
+], UsuarioDto.prototype, "nome", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", String)
+], UsuarioDto.prototype, "email", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", String)
+], UsuarioDto.prototype, "fotoBase64", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", String)
+], UsuarioDto.prototype, "senha", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", Date)
+], UsuarioDto.prototype, "criadoEm", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", Date)
+], UsuarioDto.prototype, "iatUltimoToken", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", Boolean)
+], UsuarioDto.prototype, "ativo", void 0);
 //# sourceMappingURL=usuario.dto.js.map

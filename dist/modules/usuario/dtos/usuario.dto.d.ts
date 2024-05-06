@@ -1,3 +1,6 @@
+export declare class UsuarioPutParameters {
+    id: string;
+}
 export declare class UsuarioDto {
     id: string;
     cpf: string;
@@ -8,7 +11,4 @@ export declare class UsuarioDto {
     criadoEm: Date;
     iatUltimoToken: Date;
     ativo: boolean;
-}
-export declare class UsuarioPutParameters {
-    id: string;
 }

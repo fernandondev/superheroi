@@ -1,3 +1,6 @@
+export declare class AtualizarSuperHeroiParameters {
+    id: number;
+}
 export declare class AtualizarSuperHeroiRequestDto {
     nomeSuperHeroi: string;
     nomeCompleto: string;
@@ -10,7 +13,4 @@ export declare class AtualizarSuperHeroiRequestDto {
     alinhamentoId: bigint;
     altura: number;
     peso: number;
-}
-export declare class AtualizarSuperHeroiParameters {
-    id: bigint;
 }

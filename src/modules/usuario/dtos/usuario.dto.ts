@@ -1,19 +1,44 @@
+import { ApiExtraModels, ApiProperty } from "@nestjs/swagger";
 import { IsUUID } from "class-validator";
 
-export class UsuarioDto {
-    id: string;
-    cpf: string;
-    nome: string;
-    email: string;
-    fotoBase64: string;
-    senha: string;
-    criadoEm: Date;
-    iatUltimoToken: Date;
-    ativo: boolean;
-}
-
+@ApiExtraModels(UsuarioPutParameters)
 export class UsuarioPutParameters {
 
+    @ApiProperty({
+        description: 'id do usuário',
+        required: true,
+        example: 'aaaaaaaa-bbbb-1ccc-8ddd-eeeeeeeeeeee'
+    })
     @IsUUID()
     id:string;
 }
+
+export class UsuarioDto {
+    @ApiProperty()
+    id: string;
+
+    @ApiProperty()
+    cpf: string;
+
+    @ApiProperty()
+    nome: string;
+
+    @ApiProperty()
+    email: string;
+
+    @ApiProperty()
+    fotoBase64: string;
+
+    @ApiProperty()
+    senha: string;
+
+    @ApiProperty()
+    criadoEm: Date;
+
+    @ApiProperty()
+    iatUltimoToken: Date;
+
+    @ApiProperty()
+    ativo: boolean;
+}
+

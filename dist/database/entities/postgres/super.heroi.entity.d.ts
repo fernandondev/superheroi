@@ -4,6 +4,7 @@ import { CorEntity } from './cor.entity';
 import { RacaEntity } from './raca.entity';
 import { EditoraEntity } from './editora.entity';
 import { AlinhamentoEntity } from './alinhamento.entity';
+import { HeroiPoderEntity } from './heroi.poder.entity';
 export declare class SuperHeroiEntity {
     id: bigint;
     nomeSuperHeroi: string;
@@ -18,4 +19,5 @@ export declare class SuperHeroiEntity {
     altura: number;
     peso: number;
     heroiAtributos: HeroiAtributoEntity[];
+    heroiPoderes: HeroiPoderEntity[];
 }

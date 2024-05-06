@@ -9,6 +9,7 @@ import { ParametrosCadastroAtributoResponseDto } from '../dtos/parametros.cadast
 import { AtributoHeroiResponseDto } from '../dtos/atributo.heroi.response.dto';
 import { CadastroAtributoRequestDto } from '../dtos/cadastro.atributo.request.dto';
 import { AtualizaAtributoHeroiRequestDto } from '../dtos/atualiza.atributo.heroi.request.dto';
+import { LogEnum } from 'src/common/log/models/enums/log.enum';
 
 @Injectable()
 export class AtributoService {
@@ -21,7 +22,7 @@ export class AtributoService {
 
     /**
      * Pega todos os parâmetros que serão necessários para o cadastro do atributo
-     * @returns Promise<ParametrosCadastroResponseDto>
+     * @returns Promise<ParametrosCadastroAtributoResponseDto>
      */
     async pegarTodosAtributosDisponiveis(  ): Promise<ParametrosCadastroAtributoResponseDto[]> {
 
@@ -43,7 +44,7 @@ export class AtributoService {
      * 
      * @param idHeroi 
      * Pega todos os atributos(idAtributo, nomeAtributo, valorAtributo) de um determinado heroi
-     * @returns AtributoHeroiResponseDto
+     * @returns AtributoHeroiResponseDto[]
      */
     async pegarTodosAtributosPorHeroi( idHeroi: bigint ): Promise<AtributoHeroiResponseDto[]> {
         const heroiEncontrado: SuperHeroiEntity = await this.superHeroiEntityRepository.findOne( { where: { id: idHeroi } } );
@@ -77,7 +78,6 @@ export class AtributoService {
      * 3. atributo existe
      */
     async cadastrarAtributoHeroi( cadastroAtributoRequestDto :CadastroAtributoRequestDto ) {
-        console.log(cadastroAtributoRequestDto);
         const heroiEncontrado = await this.superHeroiEntityRepository.findOne( { where: { id: cadastroAtributoRequestDto.idHeroi } } );
 
         if( !heroiEncontrado ) {
@@ -102,6 +102,8 @@ export class AtributoService {
         heroiAtributoEntityNovo.valorAtributo = cadastroAtributoRequestDto.valorAtributo;
 
         this.heroiAtributoEntityRepository.save( heroiAtributoEntityNovo );
+
+        this.logService.gravarLog( `Atributo  ${heroiAtributoEntityNovo.idAtributo} adicionado ao herói  ${heroiAtributoEntityNovo.idHeroi}`, LogEnum.INFO );
 
     }
 
@@ -128,7 +130,7 @@ export class AtributoService {
         } } );
 
         if( !heroiAtributoEncontrado ) {
-            throw new BadRequestException(`Não foi encontrado um atributo com os parâmetros passados!`);
+            throw new BadRequestException(`Não foi encontrado um atributo com os parâmetros passados para esse herói!`);
         }
         await this.heroiAtributoEntityRepository.update( 
             { idAtributo: atualizaAtributoHeroiRequestDto.idAtributo, 
@@ -136,6 +138,8 @@ export class AtributoService {
             }
             , { valorAtributo: atualizaAtributoHeroiRequestDto.valorNovoAtributo } 
         );
+
+        this.logService.gravarLog( `Atributo  ${atualizaAtributoHeroiRequestDto.idAtributo} do herói ${atualizaAtributoHeroiRequestDto.idHeroi} editado`, LogEnum.INFO );
 
     }
 
@@ -155,6 +159,8 @@ export class AtributoService {
         if (!result.affected){
             throw new BadRequestException( `Não há um atributo com o id: ${idAtributo} para o herói de id: ${idHeroi} cadastrado no sistema!` )
         }
+
+        this.logService.gravarLog( `Atributo  ${idAtributo} do herói ${idHeroi} deletado`, LogEnum.INFO );
 
     }
 

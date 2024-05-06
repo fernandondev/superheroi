@@ -1,3 +1,7 @@
+export declare class ElementoParametrosCadastroResponsDto {
+    nome: string;
+    id: bigint;
+}
 export declare class ParametrosCadastroResponseDto {
     nomeSuperHeroi: string;
     nomeCompleto: string;
@@ -10,8 +14,4 @@ export declare class ParametrosCadastroResponseDto {
     alinhamento: ElementoParametrosCadastroResponsDto[];
     altura: string;
     peso: string;
-}
-export declare class ElementoParametrosCadastroResponsDto {
-    nome: string;
-    id: bigint;
 }

@@ -8,6 +8,7 @@ import { AlinhamentoEntity } from './alinhamento.entity';
 import { AtributoEntity } from './atributo.entity';
 import { PoderEntity } from './poder.entity';
 import { NextVal, EntityWithSequence } from 'typeorm-sequence'
+import { HeroiPoderEntity } from './heroi.poder.entity';
 
 
 @Entity({ database: 'POSTGRES', name: 'superhero'})
@@ -59,5 +60,7 @@ export class SuperHeroiEntity{
     @OneToMany(() => HeroiAtributoEntity, heroiAtributo => heroiAtributo.superHeroi, {eager: true})
     heroiAtributos: HeroiAtributoEntity[];
 
+    @OneToMany(() => HeroiPoderEntity, heroiPoder => heroiPoder.superHeroi, {eager: true})
+    heroiPoderes: HeroiPoderEntity[];
 
 }

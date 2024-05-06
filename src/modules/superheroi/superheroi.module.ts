@@ -15,6 +15,9 @@ import { SuperHeroiEntity } from 'src/database/entities/postgres/super.heroi.ent
 import { UsuarioModule } from '../usuario/usuario.module';
 import { AtributoController } from './controllers/atributo.controller';
 import { AtributoService } from './services/atributo.service';
+import { PoderService } from './services/poder.service';
+import { PoderController } from './controllers/poder.controller';
+import { HeroiPoderEntity } from 'src/database/entities/postgres/heroi.poder.entity';
 
 @Module({
     imports:[
@@ -29,12 +32,13 @@ import { AtributoService } from './services/atributo.service';
                 HeroiAtributoEntity, 
                 PoderEntity, 
                 RacaEntity, 
-                SuperHeroiEntity
+                SuperHeroiEntity,
+                HeroiPoderEntity
             ], 
             'POSTGRES'),
             UsuarioModule
     ],
-    providers: [SuperheroiService, AtributoService],
-    controllers: [SuperheroiController, AtributoController]
+    providers: [SuperheroiService, AtributoService, PoderService],
+    controllers: [SuperheroiController, AtributoController, PoderController]
 })
 export class SuperheroiModule {}

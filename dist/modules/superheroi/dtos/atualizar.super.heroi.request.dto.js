@@ -9,12 +9,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AtualizarSuperHeroiParameters = exports.AtualizarSuperHeroiRequestDto = void 0;
+exports.AtualizarSuperHeroiRequestDto = exports.AtualizarSuperHeroiParameters = void 0;
+const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
+class AtualizarSuperHeroiParameters {
+}
+exports.AtualizarSuperHeroiParameters = AtualizarSuperHeroiParameters;
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        description: 'id super herói',
+        required: true,
+        example: 10
+    }),
+    (0, class_validator_1.IsDefined)({ message: 'O parãmetro id é obrigatorio' }),
+    (0, class_validator_1.IsNumber)(),
+    __metadata("design:type", Number)
+], AtualizarSuperHeroiParameters.prototype, "id", void 0);
 class AtualizarSuperHeroiRequestDto {
 }
 exports.AtualizarSuperHeroiRequestDto = AtualizarSuperHeroiRequestDto;
 __decorate([
+    (0, swagger_1.ApiProperty)({
+        required: true,
+        example: 'Chapolin'
+    }),
     (0, class_validator_1.IsDefined)({ message: 'O campo nomeSuperHeroi é obrigatório' }),
     (0, class_validator_1.IsString)({ message: 'O campo nomeSuperHeroi deve ser uma string.' }),
     (0, class_validator_1.MaxLength)(200, { message: 'O campo nomeSuperHeroi deve conter menos de 200 dígitos.' }),
@@ -22,6 +40,10 @@ __decorate([
     __metadata("design:type", String)
 ], AtualizarSuperHeroiRequestDto.prototype, "nomeSuperHeroi", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({
+        required: true,
+        example: 'Chapolin colorado'
+    }),
     (0, class_validator_1.IsDefined)({ message: 'O campo nomeCompleto é obrigatório' }),
     (0, class_validator_1.IsString)({ message: 'O campo nomeCompleto deve ser uma string.' }),
     (0, class_validator_1.MaxLength)(200, { message: 'O campo nomeCompleto deve conter menos de 200 dígitos.' }),
@@ -29,56 +51,86 @@ __decorate([
     __metadata("design:type", String)
 ], AtualizarSuperHeroiRequestDto.prototype, "nomeCompleto", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({
+        required: true,
+        example: 2
+    }),
     (0, class_validator_1.IsDefined)({ message: 'O campo generoId é obrigatório' }),
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", BigInt)
 ], AtualizarSuperHeroiRequestDto.prototype, "generoId", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({
+        required: true,
+        example: 2
+    }),
     (0, class_validator_1.IsDefined)({ message: 'O campo generoId é obrigatório' }),
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", BigInt)
 ], AtualizarSuperHeroiRequestDto.prototype, "corDoOlhoId", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({
+        required: true,
+        example: 2
+    }),
     (0, class_validator_1.IsDefined)({ message: 'O campo generoId é obrigatório' }),
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", BigInt)
 ], AtualizarSuperHeroiRequestDto.prototype, "corDoCabeloId", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({
+        required: true,
+        example: 2
+    }),
     (0, class_validator_1.IsDefined)({ message: 'O campo generoId é obrigatório' }),
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", BigInt)
 ], AtualizarSuperHeroiRequestDto.prototype, "corDaPeleId", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({
+        required: true,
+        example: 2
+    }),
     (0, class_validator_1.IsDefined)({ message: 'O campo generoId é obrigatório' }),
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", BigInt)
 ], AtualizarSuperHeroiRequestDto.prototype, "racaId", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({
+        required: true,
+        example: 2
+    }),
     (0, class_validator_1.IsDefined)({ message: 'O campo generoId é obrigatório' }),
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", BigInt)
 ], AtualizarSuperHeroiRequestDto.prototype, "editoraId", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({
+        required: true,
+        example: 2
+    }),
     (0, class_validator_1.IsDefined)({ message: 'O campo generoId é obrigatório' }),
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", BigInt)
 ], AtualizarSuperHeroiRequestDto.prototype, "alinhamentoId", void 0);
 __decorate([
-    (0, class_validator_1.IsDefined)({ message: 'O campo altura é obrigatório' }),
+    (0, swagger_1.ApiProperty)({
+        description: 'altura em cm',
+        required: true,
+        example: 194
+    }),
+    (0, class_validator_1.IsDefined)({ message: 'O campo altura em ' }),
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], AtualizarSuperHeroiRequestDto.prototype, "altura", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({
+        description: 'peso em kg',
+        required: true,
+        example: 64
+    }),
     (0, class_validator_1.IsDefined)({ message: 'O campo peso é obrigatório' }),
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], AtualizarSuperHeroiRequestDto.prototype, "peso", void 0);
-class AtualizarSuperHeroiParameters {
-}
-exports.AtualizarSuperHeroiParameters = AtualizarSuperHeroiParameters;
-__decorate([
-    (0, class_validator_1.IsDefined)({ message: 'O parãmetro id é obrigatorio' }),
-    (0, class_validator_1.IsNumber)(),
-    __metadata("design:type", BigInt)
-], AtualizarSuperHeroiParameters.prototype, "id", void 0);
 //# sourceMappingURL=atualizar.super.heroi.request.dto.js.map

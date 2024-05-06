@@ -1,7 +1,7 @@
 import {  Inject, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService, TokenExpiredError } from '@nestjs/jwt';
-import {compareSync as bcryptCompareSync} from 'bcrypt';
+import {compareSync as bcryptCompareSync} from 'bcryptjs';
 import { UsuarioService } from 'src/modules/usuario/services/usuario.service';
 import { AutenticacaoResponseDto } from '../dtos/autenticacao.response.dto';
 import { AutenticacaoLoginRequestDto } from '../dtos/autenticacao.login.request.dto';
@@ -55,7 +55,7 @@ export class AutenticacaoService {
         //Remove token da blacklist (usuário deslogado) se estiver
         await this.cacheManager.del( usuarioEncontrado.id );
 
-        this.logService.gravarLog( `AutenticacaoService->login( autenticacaoLoginRequestDto)    Usuário ${usuarioEncontrado.id} logado`, LogEnum.INFO );
+        this.logService.gravarLog( `Usuário ${usuarioEncontrado.id} logado`, LogEnum.INFO );
 
         return autenticacaoResponseDto
     }
@@ -76,7 +76,7 @@ export class AutenticacaoService {
         //Atualiza iat na tabela usuário
         await this.usuarioService.atualizarIat( usuarioEncontrado.id, iatDate  );
 
-        this.logService.gravarLog( `AutenticacaoService->reautenticar( autenticacaoRenovaTokenRequestDto)  Usuário ${usuarioEncontrado.id} reautenticado`, LogEnum.INFO );
+        this.logService.gravarLog( `Usuário ${usuarioEncontrado.id} reautenticado`, LogEnum.INFO );
 
         return await this.gerarToken( payload );
     }
@@ -94,15 +94,15 @@ export class AutenticacaoService {
     async logout( accessToken: string ) {
         const usuarioEncontrado = await this.pegarUsuarioPorToken( accessToken.replace('Bearer ', '') );
         await this.cacheManager.set( usuarioEncontrado.id, accessToken, this.jwtTempoDeExipiracao);
-        this.logService.gravarLog( ` AutenticacaoService->logout()   Usuário ${usuarioEncontrado.id} deslogado`, LogEnum.INFO );
+        this.logService.gravarLog( `Usuário ${usuarioEncontrado.id} deslogado`, LogEnum.INFO );
     }
 
     async inativarUsuario( accessToken: string ) {
         const usuarioEncontrado = await this.pegarUsuarioPorToken( accessToken.replace('Bearer ', '') );
         this.usuarioService.desativarUsuario( usuarioEncontrado.id );
         await this.logout( accessToken );
+        this.logService.gravarLog( `Usuário ${usuarioEncontrado.id} desativado`, LogEnum.INFO );
 
-        this.logService.gravarLog( ` AutenticacaoService->inativarUsuario( accessToken )   Usuário ${usuarioEncontrado.id} deslogado`, LogEnum.INFO );
     }
 
     private async gerarToken( payload ): Promise<AutenticacaoResponseDto> {

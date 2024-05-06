@@ -20,6 +20,12 @@ async function bootstrap() {
         .addTag('autenticacao')
         .addTag('usuario')
         .addTag('superheroi')
+        .addTag('atributo')
+        .addTag('poder')
+        .addSecurity('bearer', {
+        type: 'http',
+        scheme: 'bearer',
+    })
         .build();
     const document = swagger_1.SwaggerModule.createDocument(app, config);
     swagger_1.SwaggerModule.setup('api', app, document);

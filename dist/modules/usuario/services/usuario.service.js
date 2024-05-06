@@ -16,7 +16,7 @@ exports.UsuarioService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
-const bcrypt_1 = require("bcrypt");
+const bcryptjs_1 = require("bcryptjs");
 const usuario_entity_1 = require("../../../database/entities/postgres/usuario.entity");
 const log_service_1 = require("../../../common/log/log.service");
 const log_enum_1 = require("../../../common/log/models/enums/log.enum");
@@ -41,12 +41,12 @@ let UsuarioService = class UsuarioService {
         usuarioDb.cpf = novoUsuarioDto.cpf;
         usuarioDb.nome = novoUsuarioDto.nome;
         usuarioDb.email = novoUsuarioDto.email;
-        usuarioDb.senha = (0, bcrypt_1.hashSync)(novoUsuarioDto.senha, 10);
+        usuarioDb.senha = (0, bcryptjs_1.hashSync)(novoUsuarioDto.senha, 10);
         usuarioDb.fotoBase64 = novoUsuarioDto.fotoBase64;
         usuarioDb.criadoEm = dataAtual;
         usuarioDb.ativo = true;
         const { id, cpf } = await this.usuarioRepository.save(usuarioDb);
-        this.logService.gravarLog(`UsuarioService->criar(novoUsuarioDto)   Usuário ${usuarioDb.id} criado`, log_enum_1.LogEnum.INFO);
+        this.logService.gravarLog(`Usuário ${usuarioDb.id} criado`, log_enum_1.LogEnum.INFO);
         return { id, cpf };
     }
     async pesquisarPorId(id) {
@@ -54,7 +54,6 @@ let UsuarioService = class UsuarioService {
         if (!usuarioEncontrado) {
             throw new common_1.BadRequestException(`Não há um usuário com o id: ${id} cadastrado no sistema!`);
         }
-        this.logService.gravarLog(`UsuarioService->pesquisarPorId( id)   Pesquisa usuário ${usuarioEncontrado.id}`, log_enum_1.LogEnum.INFO);
         return {
             id: usuarioEncontrado.id,
             cpf: usuarioEncontrado.cpf,
@@ -74,7 +73,6 @@ let UsuarioService = class UsuarioService {
         if (!usuarioEncontrado) {
             return null;
         }
-        this.logService.gravarLog(`UsuarioService->pesquisarPorCpf( cpf)    Pesquisa usuário ${usuarioEncontrado.id}`, log_enum_1.LogEnum.INFO);
         return {
             id: usuarioEncontrado.id,
             cpf: usuarioEncontrado.cpf,
@@ -97,7 +95,6 @@ let UsuarioService = class UsuarioService {
         if (!usuarioEncontrado) {
             return null;
         }
-        this.logService.gravarLog(`UsuarioService->pesquisarPorEmailOuCpf(email, cpf)    Pesquisa usuário ${usuarioEncontrado.id}`, log_enum_1.LogEnum.INFO);
         return {
             id: usuarioEncontrado.id,
             cpf: usuarioEncontrado.cpf,
@@ -112,15 +109,17 @@ let UsuarioService = class UsuarioService {
     }
     async atualizar(id, atualizarUsuarioRequestDto) {
         const usuarioEncontrado = await this.usuarioRepository.findOne({ where: { id } });
-        const usuarioComCpfPassado = await this.pesquisarPorCpf(atualizarUsuarioRequestDto.cpf);
+        if (atualizarUsuarioRequestDto.email !== undefined) {
+            const usuarioEmail = await this.usuarioRepository.findOne({ where: { email: atualizarUsuarioRequestDto.email } });
+            if (usuarioEmail) {
+                throw new common_1.ConflictException({ message: `Já existe um usuário com o email ${usuarioEncontrado.email} no sistema` });
+            }
+        }
         if (!usuarioEncontrado) {
             throw new common_1.BadRequestException({ message: `Usuário com o id ${usuarioEncontrado.id} não encontrado` });
         }
-        if (usuarioComCpfPassado) {
-            throw new common_1.BadRequestException({ message: `Cpf já cadastrado` });
-        }
         await this.usuarioRepository.update(id, this.mapDtoParaEntityAtualizarUsuarioRequestDto(atualizarUsuarioRequestDto));
-        this.logService.gravarLog(`UsuarioService->atualizar( id, atualizarUsuarioRequestDto)    Usuário ${usuarioEncontrado.id} atualizado`, log_enum_1.LogEnum.INFO);
+        this.logService.gravarLog(`Usuário ${usuarioEncontrado.id} atualizado`, log_enum_1.LogEnum.INFO);
     }
     async atualizarIat(id, iatDate) {
         const usuarioEncontrado = await this.usuarioRepository.findOne({ where: { id } });
@@ -128,7 +127,6 @@ let UsuarioService = class UsuarioService {
             throw new common_1.BadRequestException({ message: `Usuário com o id ${usuarioEncontrado.id} não encontrado` });
         }
         usuarioEncontrado.iatUltimoToken = iatDate;
-        this.logService.gravarLog('UsuarioService->atualizarIat( id, iatDate)   token atualizado com sucesso', log_enum_1.LogEnum.INFO);
         await this.usuarioRepository.update(id, usuarioEncontrado);
     }
     async desativarUsuario(id) {
@@ -138,14 +136,20 @@ let UsuarioService = class UsuarioService {
         }
         usuarioEncontrado.ativo = false;
         await this.usuarioRepository.update(id, usuarioEncontrado);
-        this.logService.gravarLog(`UsuarioService->desativarUsuario( id )   Usuário ${usuarioEncontrado.id} desativado`, log_enum_1.LogEnum.INFO);
     }
     mapDtoParaEntityAtualizarUsuarioRequestDto(atualizarUsuarioRequestDto) {
+        if (atualizarUsuarioRequestDto.senha !== undefined) {
+            return {
+                nome: atualizarUsuarioRequestDto.nome,
+                email: atualizarUsuarioRequestDto.email,
+                fotoBase64: atualizarUsuarioRequestDto.fotoBase64,
+                senha: (0, bcryptjs_1.hashSync)(atualizarUsuarioRequestDto.senha, 10)
+            };
+        }
         return {
             nome: atualizarUsuarioRequestDto.nome,
             email: atualizarUsuarioRequestDto.email,
             fotoBase64: atualizarUsuarioRequestDto.fotoBase64,
-            senha: (0, bcrypt_1.hashSync)(atualizarUsuarioRequestDto.senha, 10)
         };
     }
 };

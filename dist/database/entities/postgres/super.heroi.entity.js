@@ -17,6 +17,7 @@ const cor_entity_1 = require("./cor.entity");
 const raca_entity_1 = require("./raca.entity");
 const editora_entity_1 = require("./editora.entity");
 const alinhamento_entity_1 = require("./alinhamento.entity");
+const heroi_poder_entity_1 = require("./heroi.poder.entity");
 let SuperHeroiEntity = class SuperHeroiEntity {
 };
 exports.SuperHeroiEntity = SuperHeroiEntity;
@@ -79,6 +80,10 @@ __decorate([
     (0, typeorm_1.OneToMany)(() => heroi_atributo_entity_1.HeroiAtributoEntity, heroiAtributo => heroiAtributo.superHeroi, { eager: true }),
     __metadata("design:type", Array)
 ], SuperHeroiEntity.prototype, "heroiAtributos", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => heroi_poder_entity_1.HeroiPoderEntity, heroiPoder => heroiPoder.superHeroi, { eager: true }),
+    __metadata("design:type", Array)
+], SuperHeroiEntity.prototype, "heroiPoderes", void 0);
 exports.SuperHeroiEntity = SuperHeroiEntity = __decorate([
     (0, typeorm_1.Entity)({ database: 'POSTGRES', name: 'superhero' })
 ], SuperHeroiEntity);

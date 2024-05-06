@@ -10,13 +10,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DeleteSuperHeroiParameter = void 0;
+const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 class DeleteSuperHeroiParameter {
 }
 exports.DeleteSuperHeroiParameter = DeleteSuperHeroiParameter;
 __decorate([
+    (0, swagger_1.ApiProperty)({
+        required: true,
+        example: 23
+    }),
     (0, class_validator_1.IsDefined)({ message: 'O parâmetro id é obrigatório' }),
     (0, class_validator_1.IsNumber)(),
-    __metadata("design:type", BigInt)
+    __metadata("design:type", Number)
 ], DeleteSuperHeroiParameter.prototype, "id", void 0);
 //# sourceMappingURL=delete.super.heroi.parameter.js.map

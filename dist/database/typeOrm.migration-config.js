@@ -15,7 +15,8 @@ const dataSourceOptions = {
     database: configService.get('DB_NAME'),
     entities: [usuario_entity_1.UsuarioEntity],
     migrations: [__dirname + '/migrations/postgres/*.ts'],
-    synchronize: false
+    synchronize: false,
+    migrationsRun: true
 };
 exports.default = new typeorm_1.DataSource(dataSourceOptions);
 //# sourceMappingURL=typeOrm.migration-config.js.map

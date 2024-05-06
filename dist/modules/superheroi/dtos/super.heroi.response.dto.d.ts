@@ -1,3 +1,7 @@
+export declare class ElementoSuperHeroiDto {
+    nome: string;
+    id: bigint;
+}
 export declare class SuperHeroiResponseDto {
     idSuperHeroi: bigint;
     nomeSuperHeroi: string;
@@ -11,8 +15,4 @@ export declare class SuperHeroiResponseDto {
     alinhamento: ElementoSuperHeroiDto;
     altura: number;
     peso: number;
-}
-export declare class ElementoSuperHeroiDto {
-    nome: string;
-    id: bigint;
 }

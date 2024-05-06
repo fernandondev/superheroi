@@ -10,18 +10,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AtualizarUsuarioRequestDto = void 0;
+const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 class AtualizarUsuarioRequestDto {
 }
 exports.AtualizarUsuarioRequestDto = AtualizarUsuarioRequestDto;
 __decorate([
-    (0, class_validator_1.IsDefined)({ message: 'cpf é obrigatório' }),
-    (0, class_validator_1.Matches)(/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/, { message: 'O cpf enviado não é válido.' }),
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", String)
-], AtualizarUsuarioRequestDto.prototype, "cpf", void 0);
-__decorate([
+    (0, swagger_1.ApiProperty)({
+        required: false,
+        example: 'Fernando'
+    }),
     (0, class_validator_1.IsDefined)({ message: 'Nome é obrigatório' }),
     (0, class_validator_1.IsString)({ message: 'O nome deve ser uma string.' }),
     (0, class_validator_1.MaxLength)(200, { message: 'O nome deve conter menos de 200 dígitos.' }),
@@ -30,6 +28,10 @@ __decorate([
     __metadata("design:type", String)
 ], AtualizarUsuarioRequestDto.prototype, "nome", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({
+        required: false,
+        example: 'teste@teste.com'
+    }),
     (0, class_validator_1.IsDefined)({ message: 'Email é obrigatório' }),
     (0, class_validator_1.IsEmail)(),
     (0, class_validator_1.IsString)({ message: 'O email deve ser uma string.' }),
@@ -39,11 +41,19 @@ __decorate([
     __metadata("design:type", String)
 ], AtualizarUsuarioRequestDto.prototype, "email", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({
+        required: false,
+        example: 'base64'
+    }),
     (0, class_validator_1.Matches)(/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/, { message: 'A foto deve estar no formato base64' }),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], AtualizarUsuarioRequestDto.prototype, "fotoBase64", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({
+        required: false,
+        example: 'senha123456'
+    }),
     (0, class_validator_1.IsDefined)({ message: 'Senha é obrigatória' }),
     (0, class_validator_1.Matches)(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, { message: 'Senha deve conter pelo menos uma letra maiúscula e um caracter especial (?, @, $, dentre outros)!' }),
     (0, class_validator_1.IsString)({ message: 'A senha deve ser uma string.' }),

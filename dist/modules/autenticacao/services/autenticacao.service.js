@@ -16,7 +16,7 @@ exports.AutenticacaoService = void 0;
 const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
 const jwt_1 = require("@nestjs/jwt");
-const bcrypt_1 = require("bcrypt");
+const bcryptjs_1 = require("bcryptjs");
 const usuario_service_1 = require("../../usuario/services/usuario.service");
 const cache_manager_1 = require("@nestjs/cache-manager");
 const log_service_1 = require("../../../common/log/log.service");
@@ -34,7 +34,7 @@ let AutenticacaoService = class AutenticacaoService {
     }
     async login(autenticacaoLoginRequestDto) {
         const usuarioEncontrado = await this.usuarioService.pesquisarPorEmailOuCpf(autenticacaoLoginRequestDto.email, autenticacaoLoginRequestDto.cpf);
-        if (!usuarioEncontrado || !(0, bcrypt_1.compareSync)(autenticacaoLoginRequestDto.senha, usuarioEncontrado.senha)) {
+        if (!usuarioEncontrado || !(0, bcryptjs_1.compareSync)(autenticacaoLoginRequestDto.senha, usuarioEncontrado.senha)) {
             throw new common_1.UnauthorizedException({ message: 'Credenciais incorretas!' });
         }
         if (!usuarioEncontrado.ativo) {
@@ -45,7 +45,7 @@ let AutenticacaoService = class AutenticacaoService {
         const autenticacaoResponseDto = await this.gerarToken(payload);
         this.usuarioService.atualizarIat(usuarioEncontrado.id, iatDate);
         await this.cacheManager.del(usuarioEncontrado.id);
-        this.logService.gravarLog(`AutenticacaoService->login( autenticacaoLoginRequestDto)    Usuário ${usuarioEncontrado.id} logado`, log_enum_1.LogEnum.INFO);
+        this.logService.gravarLog(`Usuário ${usuarioEncontrado.id} logado`, log_enum_1.LogEnum.INFO);
         return autenticacaoResponseDto;
     }
     async reautenticar(autenticacaoRenovaTokenRequestDto) {
@@ -57,19 +57,19 @@ let AutenticacaoService = class AutenticacaoService {
         const payload = { sub: usuarioEncontrado.id, cpf: usuarioEncontrado.cpf, iat: iatDate.getTime() };
         const autenticacaoResponseDto = await this.gerarToken(payload);
         await this.usuarioService.atualizarIat(usuarioEncontrado.id, iatDate);
-        this.logService.gravarLog(`AutenticacaoService->reautenticar( autenticacaoRenovaTokenRequestDto)  Usuário ${usuarioEncontrado.id} reautenticado`, log_enum_1.LogEnum.INFO);
+        this.logService.gravarLog(`Usuário ${usuarioEncontrado.id} reautenticado`, log_enum_1.LogEnum.INFO);
         return await this.gerarToken(payload);
     }
     async logout(accessToken) {
         const usuarioEncontrado = await this.pegarUsuarioPorToken(accessToken.replace('Bearer ', ''));
         await this.cacheManager.set(usuarioEncontrado.id, accessToken, this.jwtTempoDeExipiracao);
-        this.logService.gravarLog(` AutenticacaoService->logout()   Usuário ${usuarioEncontrado.id} deslogado`, log_enum_1.LogEnum.INFO);
+        this.logService.gravarLog(`Usuário ${usuarioEncontrado.id} deslogado`, log_enum_1.LogEnum.INFO);
     }
     async inativarUsuario(accessToken) {
         const usuarioEncontrado = await this.pegarUsuarioPorToken(accessToken.replace('Bearer ', ''));
         this.usuarioService.desativarUsuario(usuarioEncontrado.id);
         await this.logout(accessToken);
-        this.logService.gravarLog(` AutenticacaoService->inativarUsuario( accessToken )   Usuário ${usuarioEncontrado.id} deslogado`, log_enum_1.LogEnum.INFO);
+        this.logService.gravarLog(`Usuário ${usuarioEncontrado.id} desativado`, log_enum_1.LogEnum.INFO);
     }
     async gerarToken(payload) {
         const accessToken = this.jwtService.sign(payload);

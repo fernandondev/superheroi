@@ -23,4 +23,4 @@ jobs:
     - name: Deletar container docker antigo
       run: sudo docker rm -f superheroi-container || true
     - name: Rodar docker container
-      run: sudo docker run -d -p 8080:3000 --name superheroi-container ffcsantos2001/superheroirepos
+      run: sudo docker run -d -p 3000:3000 --name superheroi-container ffcsantos2001/superheroirepos

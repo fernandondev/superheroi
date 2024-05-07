@@ -23,4 +23,4 @@ jobs:
     - name: Deletar container docker antigo
       run: sudo docker rm -f superheroi-container || true
     - name: Rodar docker container
-      run: sudo docker run -d -p 3000:3000 --name superheroi-container ffcsantos2001/superheroirepos
+      run: sudo docker run -d -p 3000:3000 -e DB_HOST=${{secrets.DB_HOST}} -e DB_PORT=${{secrets.DB_PORT}} -e DB_USERNAME=${{secrets.DB_USERNAME}} -e DB_PASSWORD=${{secrets.DB_PASSWORD}} -e DB_NAME=${{secrets.DB_NAME}} -e DATABASE_MONGO_URL=${{secrets.DATABASE_MONGO_URL}} -e JWT_SECRET=${{secrets.JWT_SECRET}} -e JWT_EXPIRATION_TIME=${{secrets.JWT_EXPIRATION_TIME}} -e JWT_REFRESH_SECRET=${{secrets.JWT_REFRESH_SECRET}} -e JWT_REFRESH_EXPIRATION_TIME=${{secrets.JWT_REFRESH_EXPIRATION_TIME}} --name superheroi-container ffcsantos2001/superheroirepos
